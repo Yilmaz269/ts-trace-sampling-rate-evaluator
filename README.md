@@ -35,3 +35,10 @@ Rate `0` returns an empty window (`lowerBound(0) === 0n`) and rate `1` returns t
 - `parseTraceId(hex: string): bigint` — parse a 16-character hex trace ID. Throws `TypeError` for non-strings and `RangeError` for wrong length or non-hex characters.
 - `lowerBound(rate: number): bigint` — inclusive lower bound of the sampling window in `[0, 2^64]`. Throws `TypeError` for non-numbers and `RangeError` for `NaN`, infinities, or values outside `[0, 1]`.
 - `shouldSample(traceId: string, rate: number): boolean` — true when `parseTraceId(traceId) < lowerBound(rate)`.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
