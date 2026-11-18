@@ -1,6 +1,6 @@
 {
   "name": "ts-trace-sampling-rate-evaluator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Checks if a 64-bit trace ID falls within a sampling window using a lower bound.",
   "type": "module",
   "main": "src/index.js",
